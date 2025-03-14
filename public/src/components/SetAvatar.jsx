@@ -7,8 +7,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { setAvatarRoute } from "../utils/APIRoutes";
+import { host } from "../utils/APIRoutes";
 export default function SetAvatar() {
-  const api = `process.env.REACT_APP_AVATAR_API`;
+  const api = `${host}/avatar`; 
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
