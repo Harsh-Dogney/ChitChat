@@ -74,6 +74,17 @@ module.exports.setAvatar = async (req, res, next) => {
   }
 };
 
+// module.exports.avtar = async (req, res) => {
+//   try {
+//     const response = await axios.get(`https://api.multiavatar.com/${req.params.id}`);
+    
+//     res.setHeader('Content-Type', 'image/svg+xml'); // Correct Content-Type
+//     res.send(response.data); // Send raw SVG data
+//   } catch (error) {
+//     res.status(500).json({ error: "Error fetching avatar" });
+//   }
+// };
+
 module.exports.logOut = (req, res, next) => {
   try {
     if (!req.params.id) return res.json({ msg: "User id is required " });

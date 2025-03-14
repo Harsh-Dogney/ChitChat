@@ -28,8 +28,20 @@ app.get("/ping", (_req, res) => {
   return res.json({ msg: "Ping Successful" });
 });
 
+app.get('/avatar/:id', async (req, res) => {
+  try {
+    const response = await axios.get(`https://api.multiavatar.com/${req.params.id}`);
+    
+    res.setHeader('Content-Type', 'image/svg+xml'); // Correct Content-Type
+    res.send(response.data); // Send raw SVG data
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching avatar" });
+  }
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+
 
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
