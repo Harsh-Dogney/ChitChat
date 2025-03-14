@@ -5,6 +5,7 @@ const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
+const axios = require("axios"); 
 require("dotenv").config();
 
 app.use(cors());
@@ -23,13 +24,15 @@ app.get("/ping", (_req, res) => {
   return res.json({ msg: "Ping Successful" });
 });
 
+
 app.get('/avatar/:id', async (req, res) => {
   try {
-    const response = await axios.get(`https://api.multiavatar.com/${req.params.id}`);
+    const response = await axios.get(`https://api.dicebear.com/7.x/pixel-art/svg?seed=${req.params.id}`);
     
     res.setHeader('Content-Type', 'image/svg+xml'); // Correct Content-Type
     res.send(response.data); // Send raw SVG data
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Error fetching avatar" });
   }
 });
