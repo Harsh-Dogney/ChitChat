@@ -29,8 +29,8 @@ app.get('/avatar/:id', async (req, res) => {
   try {
     const response = await axios.get(`https://api.dicebear.com/7.x/pixel-art/svg?seed=${req.params.id}`);
     
-    res.setHeader('Content-Type', 'image/svg+xml'); // Correct Content-Type
-    res.send(response.data); // Send raw SVG data
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.send(response.data); 
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error fetching avatar" });
@@ -53,6 +53,7 @@ const io = socket(server, {
 
 global.onlineUsers = new Map();
 io.on("connection", (socket) => {
+  
   global.chatSocket = socket;
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);

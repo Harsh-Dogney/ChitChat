@@ -1,4 +1,5 @@
-export const host = "https://chitchat-4qgi.onrender.com";
+// export const host = "https://chitchat-4qgi.onrender.com";
+export const host = "http://localhost:7020";
 export const loginRoute = `${host}/api/auth/login`;
 export const registerRoute = `${host}/api/auth/register`;
 export const logoutRoute = `${host}/api/auth/logout`;
